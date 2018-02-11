@@ -1,0 +1,5 @@
+<h1>Flower List </h1>
+<% var flower_list = flowerlist%>
+<% flower_list.forEach(function (flower) { %>
+  <li><strong><%= flower.flower%> : </strong><%=flower.color%></li>
+<% });%>

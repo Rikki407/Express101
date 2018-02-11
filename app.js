@@ -1,31 +1,33 @@
 var express = require("express");
 var app = express();
-app.get("/",function (req,res) {
-    res.send("Hi There Welcome to my assignment");
+
+app.get("/",function (req, res) {
+    res.render("home.ejs");
 });
-app.get("/speak/:animal",function (req,res) {
-   var animal = req.params.animal;
-   var voice = "hmm";
-   switch (animal)
-   {
-       case "cat": voice = "Meow";
-           break;
-       case "dog": voice = "WOOF WOOF";
-           break;
-       case "cow": voice = "Moo";
-           break;
-   }
-   res.send("The " + animal+" says "+voice);
+app.get("/flowername/:name",function (req, res) {
+   var name = req.params.name;
+    res.render("flower.ejs",{flower_name : name});
 });
-app.get("/repeat/:say_what/:num",function (req, res) {
-    var say_what = req.params.say_what;
-    var num = req.params.num;
-    var empty ="";
-    for(var i=0;i<num;i++)
-    {
-        empty = empty + " " +say_what;
-    }
-    res.send(empty);
+app.get("/flowerlist",function (req, res) {
+    var flist = [
+        {
+            color : "violet",
+            flower : "daisy"
+        },
+        {
+            color : "yellow",
+            flower : "sunflower"
+        },
+        {
+            color : "red",
+            flower : "rose"
+        },
+        {
+            color : "black",
+            flower : "tulip"
+        }
+    ];
+    res.render("flowerlist.ejs",{flowerlist : flist});
 });
 app.get("*",function (req,res) {
    res.send("Sorry, page not found... What are you doing with your life");
