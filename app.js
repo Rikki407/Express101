@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
-
+app.use(express.static("public"));
+app.set("view engine","ejs");
 app.get("/",function (req, res) {
     res.render("home.ejs");
 });
@@ -27,7 +28,7 @@ app.get("/flowerlist",function (req, res) {
             flower : "tulip"
         }
     ];
-    res.render("flowerlist.ejs",{flowerlist : flist});
+    res.render("flowerlist",{flowerlist : flist});
 });
 app.get("*",function (req,res) {
    res.send("Sorry, page not found... What are you doing with your life");
